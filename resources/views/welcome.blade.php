@@ -13,7 +13,9 @@
     </head>
     <body>
 
-        @livewire('counter');        
+        <div class="container">
+            @livewire('search');
+        </div>     
 
         @livewireScripts
         {{-- bootstrap scripts --}}
