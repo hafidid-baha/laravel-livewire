@@ -16,6 +16,8 @@ class Search extends Component
         return view('livewire.search');
     }
 
-    
+    public function getData(){
+        $this->data = Places::where('name','LIKE','%{$this->search}%');
+    }
 
 }
