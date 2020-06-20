@@ -9,15 +9,30 @@ class Search extends Component
 {
 
     public $search = '';
-    public $data;
+    public $data= array();
+    public $newData= array();
 
     public function render()
     {
+        $this->data = Places::all()->toArray();
         return view('livewire.search');
     }
 
     public function getData(){
-        $this->data = Places::where('name','LIKE','%{$this->search}%');
+        // $s = '%'.$this->search.'%';
+        $s = $this->search;
+        // $this->data = Places::where('name','like','kjhkj')->toSql();
+        // $this->data = Places::where('name','like','%'.$this->search.'%')->get();
+        // $this->data = Places::all();
+        if($s != ''){
+            $this->newData = array_filter($this->data,function($item)use($s){
+                // var_dump($item['name'],$s);
+                return strpos($item['name'], $s);
+            });
+        }else{
+            $this->newData = array();
+        }
+        
     }
 
 }
